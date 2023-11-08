@@ -1,20 +1,21 @@
-import { NavLink } from 'react-router-dom'
 import { ShoppingCart, MapPin } from '@phosphor-icons/react'
 
 import logo from '../../assets/logo.svg'
-import { HeaderContainer } from './styles'
+import { HeaderContainer, LocationContainer, CartContainer } from './styles'
 
 export function Header() {
   return (
     <HeaderContainer>
       <img src={logo} alt="" />
       <nav>
-        <NavLink to="/" title="Home">
+        <LocationContainer to="/" title="Home">
           <MapPin size={22} weight="fill" />
-        </NavLink>
-        <NavLink to="/cart" title="Cart">
+          <span>São Paulo, SP</span>
+        </LocationContainer>
+
+        <CartContainer to="/cart" title="Cart">
           <ShoppingCart size={22} weight="fill" />
-        </NavLink>
+        </CartContainer>
       </nav>
     </HeaderContainer>
   )

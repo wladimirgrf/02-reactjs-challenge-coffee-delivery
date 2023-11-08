@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
@@ -7,28 +8,40 @@ export const HeaderContainer = styled.header`
 
   nav {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.75rem;
+  }
+`
 
-    a {
-      width: 3rem;
-      height: 3rem;
+const BaseNavContainer = styled(NavLink)`
+  height: 2.375rem;
+  padding: 0.5rem;
+  border-radius: 6px;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+`
 
-      color: ${(props) => props.theme['yellow-800']};
+export const LocationContainer = styled(BaseNavContainer)`
+  gap: 0.25rem;
+  font-size: 14px;
 
-      border-top: 3px solid transparent;
-      border-bottom: 3px solid transparent;
+  background-color: ${(props) => props.theme['purple-200']};
+  color: ${(props) => props.theme['purple-500']};
 
-      &:hover {
-        border-bottom: 3px solid ${(props) => props.theme['green-500']};
-      }
+  &:hover {
+    background-color: ${(props) => props.theme['purple-500']};
+    color: ${(props) => props.theme['purple-200']};
+  }
+`
 
-      &.active {
-        color: ${(props) => props.theme['green-500']};
-      }
-    }
+export const CartContainer = styled(BaseNavContainer)`
+  background-color: ${(props) => props.theme['yellow-200']};
+  color: ${(props) => props.theme['yellow-800']};
+
+  &:hover {
+    background-color: ${(props) => props.theme['yellow-800']};
+    color: ${(props) => props.theme['yellow-200']};
   }
 `
