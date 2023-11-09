@@ -2,6 +2,10 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,6 +13,11 @@ export const HeaderContainer = styled.header`
   nav {
     display: flex;
     gap: 0.75rem;
+  }
+
+  @media (max-width: 1020px) {
+    margin: 0;
+    padding: 0 1rem;
   }
 `
 
