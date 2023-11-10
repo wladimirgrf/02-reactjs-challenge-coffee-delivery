@@ -1,4 +1,4 @@
-import { ShoppingCart, MapPin } from '@phosphor-icons/react'
+import { ShoppingCartSimple, MapPin } from '@phosphor-icons/react'
 
 import logo from '../../assets/logo.svg'
 import { HeaderContainer, LocationContainer, CartContainer } from './styles'
@@ -14,7 +14,7 @@ export function Header() {
         </LocationContainer>
 
         <CartContainer to="/cart" title="Cart">
-          <ShoppingCart size={22} weight="fill" />
+          <ShoppingCartSimple size={22} weight="fill" />
         </CartContainer>
       </nav>
     </HeaderContainer>
