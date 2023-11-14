@@ -13,7 +13,7 @@ export function Header() {
           <span>São Paulo, SP</span>
         </LocationContainer>
 
-        <CartContainer to="/cart" title="Cart">
+        <CartContainer to="/checkout" title="Checkout">
           <ShoppingCartSimple size={22} weight="fill" />
         </CartContainer>
       </nav>

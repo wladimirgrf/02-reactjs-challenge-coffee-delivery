@@ -5,6 +5,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   max-width: 70rem;
   margin: 0 auto;
+  padding: 2rem 0;
 
   display: flex;
   align-items: center;
@@ -43,6 +44,10 @@ export const LocationContainer = styled(BaseNavContainer)`
     background-color: ${(props) => props.theme['purple-500']};
     color: ${(props) => props.theme['purple-200']};
   }
+
+  &:focus {
+    box-shadow: 0 0 0 2px ${(props) => props.theme['purple-500']};
+  }
 `
 
 export const CartContainer = styled(BaseNavContainer)`
@@ -52,5 +57,9 @@ export const CartContainer = styled(BaseNavContainer)`
   &:hover {
     background-color: ${(props) => props.theme['yellow-800']};
     color: ${(props) => props.theme['yellow-200']};
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-800']};
   }
 `
