@@ -22,6 +22,7 @@ import {
   PaymentList,
   PaymentItem,
   PriceLabel,
+  PriceContainer,
 } from './styles'
 
 export function Checkout() {
@@ -75,15 +76,17 @@ export function Checkout() {
         <strong>Selected coffees</strong>
         <OrderInfo>
           <OrderItem />
-          <PriceLabel>
-            Cart Subtotal <span>$ 29,70</span>
-          </PriceLabel>
-          <PriceLabel>
-            Delivery <span>$ 3,50</span>
-          </PriceLabel>
-          <PriceLabel $bold>
-            Total <span>$ 33,20</span>
-          </PriceLabel>
+          <PriceContainer>
+            <PriceLabel>
+              Cart Subtotal <span>$ 29,70</span>
+            </PriceLabel>
+            <PriceLabel>
+              Delivery <span>$ 3,50</span>
+            </PriceLabel>
+            <PriceLabel $bold>
+              Total <span>$ 33,20</span>
+            </PriceLabel>
+          </PriceContainer>
         </OrderInfo>
       </OrderContainer>
     </CheckoutContainer>

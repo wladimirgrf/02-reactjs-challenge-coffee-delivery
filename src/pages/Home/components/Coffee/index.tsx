@@ -1,4 +1,4 @@
-import { Minus, Plus, ShoppingCartSimple } from '@phosphor-icons/react'
+import { ShoppingCartSimple } from '@phosphor-icons/react'
 
 import {
   CoffeeContainer,
@@ -7,14 +7,11 @@ import {
   CoffeeTags,
   Price,
   AddToCartContainer,
-  DecrementButton,
-  IncrementButton,
-  QuantityContainer,
-  QuantityInput,
   AddToCartButton,
 } from './styles'
 
 import traditional from '../../../../assets/coffee/traditional.svg'
+import { InputNumber } from '../../../../components/InputNumber'
 
 export function Coffee() {
   return (
@@ -32,15 +29,7 @@ export function Coffee() {
           <span>$</span>
           <strong>2,99</strong>
         </Price>
-        <QuantityContainer>
-          <DecrementButton>
-            <Minus size={32} />
-          </DecrementButton>
-          <QuantityInput value={0} disabled onChange={() => {}} />
-          <IncrementButton>
-            <Plus size={32} />
-          </IncrementButton>
-        </QuantityContainer>
+        <InputNumber />
         <AddToCartButton>
           <ShoppingCartSimple size={20} weight="fill" />
         </AddToCartButton>

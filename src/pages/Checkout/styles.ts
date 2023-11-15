@@ -176,6 +176,10 @@ export const OrderInfo = styled.div`
   background: ${(props) => props.theme['gray-200']};
 `
 
+export const PriceContainer = styled.div`
+  margin-top: 1.5rem;
+`
+
 interface PriceLabelProps {
   $bold?: boolean
 }
