@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CheckoutContainer = styled.main`
   max-width: 70rem;
@@ -157,6 +157,7 @@ export const OrderContainer = styled.div`
   margin-left: 2rem;
 
   display: flex;
+  flex-direction: column;
 
   span {
     font-size: 0.75rem;
@@ -165,5 +166,43 @@ export const OrderContainer = styled.div`
 `
 
 export const OrderInfo = styled.div`
+  max-width: 40rem;
+  width: 100%;
+  margin-top: 0.938rem;
+  padding: 2.5rem;
+
+  border-radius: 6px 44px 6px 44px;
+
   background: ${(props) => props.theme['gray-200']};
+`
+
+interface PriceLabelProps {
+  $bold?: boolean
+}
+
+export const PriceLabel = styled.label<PriceLabelProps>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1.8;
+
+  font-size: 0.875rem;
+  color: ${(props) => props.theme['gray-700']};
+
+  span {
+    font-size: 1rem;
+  }
+
+  ${(props) =>
+    props.$bold &&
+    css`
+      font-size: 1.25rem;
+      font-weight: bold;
+
+      color: ${(props) => props.theme['gray-800']};
+
+      span {
+        font-size: 1.25rem;
+      }
+    `}
 `
