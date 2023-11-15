@@ -10,7 +10,7 @@ export function Header() {
       <nav>
         <LocationContainer to="/" title="Home">
           <MapPin size={22} weight="fill" />
-          <span>São Paulo, SP</span>
+          <span>Nashville, TN</span>
         </LocationContainer>
 
         <CartContainer to="/checkout" title="Checkout">

@@ -1,4 +1,11 @@
-import { MapPinLine } from '@phosphor-icons/react'
+import {
+  MapPinLine,
+  CurrencyDollar,
+  CreditCard,
+  Bank,
+  Money,
+} from '@phosphor-icons/react'
+
 import { OrderItem } from './components/OrderItem'
 import {
   CheckoutContainer,
@@ -11,6 +18,9 @@ import {
   InputLarge,
   FirstInput,
   AddressSection,
+  PaymentSection,
+  PaymentList,
+  PaymentItem,
 } from './styles'
 
 export function Checkout() {
@@ -34,7 +44,31 @@ export function Checkout() {
           <InputSmall name="city" placeholder="City" />
           <InputSmall name="state" placeholder="State / Province" />
         </AddressInfo>
-        <PaymentInfo></PaymentInfo>
+        <PaymentInfo>
+          <PaymentSection>
+            <CurrencyDollar size={22} />
+            <p>
+              <strong>Payment</strong>
+              <span>
+                Payment is made upon delivery. Choose the way you want to pay
+              </span>
+            </p>
+          </PaymentSection>
+          <PaymentList>
+            <PaymentItem type="button" onClick={() => {}}>
+              <CreditCard size={16} />
+              CREDIT CARD
+            </PaymentItem>
+            <PaymentItem type="button" onClick={() => {}}>
+              <Bank size={16} />
+              DEBIT CARD
+            </PaymentItem>
+            <PaymentItem type="button" onClick={() => {}}>
+              <Money size={16} />
+              CASH
+            </PaymentItem>
+          </PaymentList>
+        </PaymentInfo>
       </CustomerForm>
       <OrderContainer>
         <strong>Selected coffees</strong>

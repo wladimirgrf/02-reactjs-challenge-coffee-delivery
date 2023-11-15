@@ -45,7 +45,7 @@ export const LocationContainer = styled(BaseNavContainer)`
     color: ${(props) => props.theme['purple-200']};
   }
 
-  &:focus {
+  &.active {
     box-shadow: 0 0 0 2px ${(props) => props.theme['purple-500']};
   }
 `
@@ -59,7 +59,7 @@ export const CartContainer = styled(BaseNavContainer)`
     color: ${(props) => props.theme['yellow-200']};
   }
 
-  &:focus {
+  &.active {
     box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-800']};
   }
 `

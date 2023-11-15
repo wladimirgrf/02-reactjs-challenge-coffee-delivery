@@ -19,18 +19,7 @@ export const CustomerForm = styled.form`
   }
 `
 
-export const AddressInfo = styled.div`
-  background: ${(props) => props.theme['gray-200']};
-
-  display: flex;
-  flex-wrap: wrap;
-
-  border-radius: 6px;
-  padding: 2.5rem;
-  margin-top: 0.938rem;
-`
-
-export const AddressSection = styled.section`
+const DefaultSection = styled.section`
   display: flex;
   justify-content: flex-start;
   gap: 0.5rem;
@@ -56,6 +45,23 @@ export const AddressSection = styled.section`
     font-size: 0.875rem;
     font-weight: normal;
     color: ${(props) => props.theme['gray-700']};
+  }
+`
+
+export const AddressInfo = styled.div`
+  background: ${(props) => props.theme['gray-200']};
+
+  display: flex;
+  flex-wrap: wrap;
+
+  border-radius: 6px;
+  padding: 2.5rem;
+  margin-top: 0.938rem;
+`
+
+export const AddressSection = styled(DefaultSection)`
+  svg {
+    color: ${(props) => props.theme['yellow-800']};
   }
 `
 
@@ -97,6 +103,52 @@ export const InputSmall = styled(Input)`
 
 export const PaymentInfo = styled.div`
   background: ${(props) => props.theme['gray-200']};
+
+  display: flex;
+  flex-wrap: wrap;
+
+  border-radius: 6px;
+  padding: 2.5rem;
+  margin-top: 0.75rem;
+`
+
+export const PaymentSection = styled(DefaultSection)`
+  svg {
+    color: ${(props) => props.theme['purple-500']};
+  }
+`
+
+export const PaymentList = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+export const PaymentItem = styled.button`
+  width: 11.167rem;
+
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  gap: 0.75rem;
+
+  display: flex;
+  align-items: center;
+
+  padding: 1rem;
+  font-size: 0.75rem;
+
+  color: ${(props) => props.theme['gray-700']};
+  background: ${(props) => props.theme['gray-400']};
+
+  svg {
+    color: ${(props) => props.theme['purple-500']};
+  }
+
+  &:hover {
+    color: ${(props) => props.theme['gray-800']};
+    background: ${(props) => props.theme['gray-500']};
+  }
 `
 
 export const OrderContainer = styled.div`
