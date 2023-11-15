@@ -1,3 +1,4 @@
+import { MapPinLine } from '@phosphor-icons/react'
 import { OrderItem } from './components/OrderItem'
 import {
   CheckoutContainer,
@@ -6,7 +7,10 @@ import {
   PaymentInfo,
   AddressInfo,
   OrderContainer,
-  Input,
+  InputSmall,
+  InputLarge,
+  FirstInput,
+  AddressSection,
 } from './styles'
 
 export function Checkout() {
@@ -15,11 +19,20 @@ export function Checkout() {
       <CustomerForm>
         <strong>Complete your order</strong>
         <AddressInfo>
-          <Input name="zip-code" placeholder="Zip code" />
-          <Input name="address" placeholder="Address" />
-          <Input name="apt" placeholder="Apt / Suite / Unit" />
-          <Input name="city" placeholder="City" />
-          <Input name="state" placeholder="State / Province" />
+          <AddressSection>
+            <MapPinLine size={22} />
+            <p>
+              <strong>Delivery address</strong>
+              <span>
+                Fill in the address where you would like to receive your order
+              </span>
+            </p>
+          </AddressSection>
+          <FirstInput name="zip-code" placeholder="Zip code" />
+          <InputLarge name="address" placeholder="Address" />
+          <InputSmall name="apt" placeholder="Apt / Suite / Unit" />
+          <InputSmall name="city" placeholder="City" />
+          <InputSmall name="state" placeholder="State / Province" />
         </AddressInfo>
         <PaymentInfo></PaymentInfo>
       </CustomerForm>
