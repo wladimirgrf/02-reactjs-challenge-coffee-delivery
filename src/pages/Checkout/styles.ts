@@ -7,6 +7,13 @@ export const CheckoutContainer = styled.main`
 
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 1020px) {
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    max-width: none;
+  }
 `
 
 export const CustomerForm = styled.form`
@@ -17,9 +24,14 @@ export const CustomerForm = styled.form`
     font-size: 0.75rem;
     color: ${(props) => props.theme['gray-800']};
   }
+
+  @media (max-width: 1020px) {
+    max-width: none;
+  }
 `
 
 const DefaultSection = styled.section`
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   gap: 0.5rem;
@@ -149,6 +161,12 @@ export const PaymentItem = styled.button`
     color: ${(props) => props.theme['gray-800']};
     background: ${(props) => props.theme['gray-500']};
   }
+
+  @media (max-width: 1020px) {
+    & + & {
+      margin-left: 1rem;
+    }
+  }
 `
 
 export const OrderContainer = styled.div`
@@ -162,6 +180,12 @@ export const OrderContainer = styled.div`
   span {
     font-size: 0.75rem;
     color: ${(props) => props.theme['gray-800']};
+  }
+
+  @media (max-width: 1020px) {
+    margin-top: 1rem;
+    margin-left: 0;
+    max-width: none;
   }
 `
 
@@ -209,4 +233,25 @@ export const PriceLabel = styled.label<PriceLabelProps>`
         font-size: 1.25rem;
       }
     `}
+`
+
+export const ConfirmOrderButton = styled.button`
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 6px;
+
+  font-size: 0.875rem;
+  font-weight: bold;
+
+  background: ${(props) => props.theme['yellow-500']};
+  color: ${(props) => props.theme.white};
+
+  &:hover {
+    background: ${(props) => props.theme['yellow-800']};
+  }
 `

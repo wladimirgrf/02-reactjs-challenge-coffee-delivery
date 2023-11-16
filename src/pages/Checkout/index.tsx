@@ -23,6 +23,7 @@ import {
   PaymentItem,
   PriceLabel,
   PriceContainer,
+  ConfirmOrderButton,
 } from './styles'
 
 export function Checkout() {
@@ -76,6 +77,7 @@ export function Checkout() {
         <strong>Selected coffees</strong>
         <OrderInfo>
           <OrderItem />
+          <OrderItem />
           <PriceContainer>
             <PriceLabel>
               Cart Subtotal <span>$ 29,70</span>
@@ -87,6 +89,8 @@ export function Checkout() {
               Total <span>$ 33,20</span>
             </PriceLabel>
           </PriceContainer>
+
+          <ConfirmOrderButton type="submit">CONFIRM ORDER</ConfirmOrderButton>
         </OrderInfo>
       </OrderContainer>
     </CheckoutContainer>
