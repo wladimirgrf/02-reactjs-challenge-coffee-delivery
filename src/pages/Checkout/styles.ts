@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const CheckoutContainer = styled.main`
+export const CheckoutForm = styled.form`
   max-width: 70rem;
   width: 100%;
   margin: 2.5rem auto;
@@ -16,7 +16,7 @@ export const CheckoutContainer = styled.main`
   }
 `
 
-export const CustomerForm = styled.form`
+export const CustomerContainer = styled.div`
   max-width: 40rem;
   width: 100%;
 

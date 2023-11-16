@@ -1,3 +1,5 @@
+import { FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   MapPinLine,
   CurrencyDollar,
@@ -8,8 +10,8 @@ import {
 
 import { OrderItem } from './components/OrderItem'
 import {
-  CheckoutContainer,
-  CustomerForm,
+  CheckoutForm,
+  CustomerContainer,
   OrderInfo,
   PaymentInfo,
   AddressInfo,
@@ -27,9 +29,17 @@ import {
 } from './styles'
 
 export function Checkout() {
+  const navigate = useNavigate()
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault()
+
+    navigate('/delivery')
+  }
+
   return (
-    <CheckoutContainer>
-      <CustomerForm>
+    <CheckoutForm onSubmit={handleSubmit}>
+      <CustomerContainer>
         <strong>Complete your order</strong>
         <AddressInfo>
           <AddressSection>
@@ -72,7 +82,7 @@ export function Checkout() {
             </PaymentItem>
           </PaymentList>
         </PaymentInfo>
-      </CustomerForm>
+      </CustomerContainer>
       <OrderContainer>
         <strong>Selected coffees</strong>
         <OrderInfo>
@@ -93,6 +103,6 @@ export function Checkout() {
           <ConfirmOrderButton type="submit">CONFIRM ORDER</ConfirmOrderButton>
         </OrderInfo>
       </OrderContainer>
-    </CheckoutContainer>
+    </CheckoutForm>
   )
 }
