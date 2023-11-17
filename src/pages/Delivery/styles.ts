@@ -23,6 +23,19 @@ export const DeliveryContainer = styled.div`
     justify-content: space-between;
     margin-top: 2.5rem;
   }
+
+  @media (max-width: 1020px) {
+    padding: 1rem;
+
+    section {
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+        margin-top: 1rem;
+      }
+    }
+  }
 `
 
 export const DeliveryInfo = styled.div`
@@ -46,6 +59,11 @@ export const DeliveryInfo = styled.div`
       ${(props) => props.theme['yellow-500']},
       ${(props) => props.theme['purple-500']}
     );
+
+  @media (max-width: 1020px) {
+    max-width: none;
+    height: 17.5rem;
+  }
 `
 
 const ICON_BG_COLORS = {
