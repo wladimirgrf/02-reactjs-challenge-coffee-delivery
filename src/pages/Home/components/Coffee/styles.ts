@@ -19,8 +19,10 @@ export const CoffeeImage = styled.img`
 `
 
 export const CoffeeTags = styled.div`
+  display: flex;
   margin-top: 0.75rem;
   margin-bottom: 1rem;
+  gap: 0.25rem;
 
   span {
     font-size: 0.625rem;

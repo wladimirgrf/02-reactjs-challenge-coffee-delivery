@@ -10,24 +10,34 @@ import {
   AddToCartButton,
 } from './styles'
 
-import traditional from '../../../../assets/coffee/traditional.svg'
 import { InputNumber } from '../../../../components/InputNumber'
 
-export function Coffee() {
+interface CoffeeProps {
+  id: number
+  name: string
+  description: string
+  image: string
+  tags: string[]
+  price: string
+}
+
+export function Coffee(props: CoffeeProps) {
   return (
     <CoffeeContainer>
-      <CoffeeImage src={traditional}></CoffeeImage>
+      <CoffeeImage src={`src/assets/coffee/${props.image}`}></CoffeeImage>
       <CoffeeTags>
-        <span>TRADITIONAL</span>
+        {props.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
       </CoffeeTags>
       <CoffeeInfo>
-        <strong>Traditional Express</strong>
-        <span>Traditional coffee made with hot water and ground beans</span>
+        <strong>{props.name}</strong>
+        <span>{props.description}</span>
       </CoffeeInfo>
       <AddToCartContainer>
         <Price>
           <span>$</span>
-          <strong>2,99</strong>
+          <strong>{props.price}</strong>
         </Price>
         <InputNumber />
         <AddToCartButton>
