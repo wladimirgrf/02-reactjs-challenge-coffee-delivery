@@ -17,7 +17,7 @@ export const ItemMiddleSection = styled.section`
   display: flex;
   flex-direction: column;
 
-  span {
+  p {
     font-size: 1rem;
     color: ${(props) => props.theme['gray-800']};
   }

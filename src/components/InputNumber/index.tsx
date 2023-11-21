@@ -20,11 +20,11 @@ export function InputNumber({
 }: InputNumberProps) {
   return (
     <InputNumberContainer>
-      <DecrementButton onClick={reduceTheAmount}>
+      <DecrementButton onClick={reduceTheAmount} type="button">
         <Minus size={32} />
       </DecrementButton>
       <QuantityInput value={amount} disabled onChange={() => {}} />
-      <IncrementButton onClick={increaseTheAmount}>
+      <IncrementButton onClick={increaseTheAmount} type="button">
         <Plus size={32} />
       </IncrementButton>
     </InputNumberContainer>
