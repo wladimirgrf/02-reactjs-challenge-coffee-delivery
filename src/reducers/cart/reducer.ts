@@ -6,7 +6,7 @@ export interface Coffee {
   id: number
   name: string
   image: string
-  price: string
+  price: number
   amount: number
 }
 
@@ -71,6 +71,12 @@ export function cartReducer(state: CartState, action: any) {
 
       return produce(state, (draft) => {
         draft.cartCoffees.splice(coffeeIndex, 1)
+      })
+    }
+
+    case ActionTypes.RESET_CART: {
+      return produce(state, (draft) => {
+        draft.cartCoffees = []
       })
     }
 

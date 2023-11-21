@@ -20,11 +20,11 @@ interface CoffeeProps {
   description: string
   image: string
   tags: string[]
-  price: string
+  price: number
 }
 
 export function Coffee(props: CoffeeProps) {
-  const [coffeeAmount, setCoffeeAmount] = useState(0)
+  const [coffeeAmount, setCoffeeAmount] = useState(1)
 
   const { cartCoffees, addCoffee } = useContext(CartContext)
 

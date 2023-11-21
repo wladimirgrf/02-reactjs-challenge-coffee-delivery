@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import {
   MapPinLine,
   CurrencyDollar,
@@ -32,6 +32,7 @@ import {
 } from './styles'
 
 import { CartContext } from '../../contexts/CartContext'
+import { formatCurrency } from '../../utils/currency'
 
 const checkoutFormValidationSchema = z.object({
   zipCode: z.string(),
@@ -44,9 +45,8 @@ const checkoutFormValidationSchema = z.object({
 type CheckoutFormData = z.infer<typeof checkoutFormValidationSchema>
 
 export function Checkout() {
+  const { cartCoffees, resetTheCart } = useContext(CartContext)
   const navigate = useNavigate()
-
-  const { cartCoffees } = useContext(CartContext)
 
   const checkoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormValidationSchema),
@@ -59,12 +59,19 @@ export function Checkout() {
     },
   })
 
-  const { watch, reset, handleSubmit, register } = checkoutForm
+  const { handleSubmit, register } = checkoutForm
+
+  const totalInTheCart = cartCoffees.reduce((totalAmount, coffee) => {
+    return totalAmount + coffee.amount * coffee.price
+  }, 0)
+
+  const deliveryCost = 3.5
+
+  const total = totalInTheCart + deliveryCost
 
   function handleCompleteCheckout(data: CheckoutFormData) {
-    console.log(data)
-
-    // navigate('/delivery')
+    resetTheCart()
+    navigate('/delivery', { state: data })
   }
 
   return (
@@ -83,11 +90,27 @@ export function Checkout() {
               </p>
             </AddressSection>
 
-            <FirstInput placeholder="Zip code" {...register('zipCode')} />
-            <InputLarge placeholder="Address" {...register('address')} />
+            <FirstInput
+              placeholder="Zip code"
+              required
+              {...register('zipCode')}
+            />
+
+            <InputLarge
+              placeholder="Address"
+              required
+              {...register('address')}
+            />
+
             <InputSmall placeholder="Apt / Suite / Unit" {...register('apt')} />
-            <InputSmall placeholder="City" {...register('city')} />
-            <InputSmall placeholder="State / Province" {...register('state')} />
+
+            <InputSmall placeholder="City" required {...register('city')} />
+
+            <InputSmall
+              placeholder="State / Province"
+              required
+              {...register('state')}
+            />
           </AddressInfo>
           <PaymentInfo>
             <PaymentSection>
@@ -124,20 +147,21 @@ export function Checkout() {
                   key={coffee.id}
                   id={coffee.id}
                   name={coffee.name}
-                  amount={coffee.amount}
                   image={coffee.image}
+                  amount={coffee.amount}
+                  price={coffee.price}
                 />
               ))}
 
             <PriceContainer>
               <PriceLabel>
-                Cart Subtotal <span>$ 29,70</span>
+                Cart Subtotal <span>$ {formatCurrency(totalInTheCart)}</span>
               </PriceLabel>
               <PriceLabel>
-                Delivery <span>$ 3,50</span>
+                Delivery <span>$ {formatCurrency(deliveryCost)} </span>
               </PriceLabel>
               <PriceLabel $bold>
-                Total <span>$ 33,20</span>
+                Total <span>$ {formatCurrency(total)}</span>
               </PriceLabel>
             </PriceContainer>
 

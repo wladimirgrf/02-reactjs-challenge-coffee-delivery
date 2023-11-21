@@ -5,6 +5,7 @@ export enum ActionTypes {
   INCREASE_COFFEE_AMOUNT = 'INCREASE_COFFEE_AMOUNT',
   REDUCE_COFFEE_AMOUNT = 'REDUCE_COFFEE_AMOUNT',
   REMOVE_COFFEE = 'REMOVE_COFFEE',
+  RESET_CART = 'RESET_CART',
 }
 
 export function addCoffeeAction(coffee: Coffee) {
@@ -32,5 +33,11 @@ export function removeCoffeeAction(coffeeId: number) {
   return {
     type: ActionTypes.REMOVE_COFFEE,
     payload: { coffeeId },
+  }
+}
+
+export function resetTheCartAction() {
+  return {
+    type: ActionTypes.RESET_CART,
   }
 }

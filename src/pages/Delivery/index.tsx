@@ -1,9 +1,19 @@
+import { useLocation } from 'react-router-dom'
 import { MapPin, Timer, CurrencyDollar } from '@phosphor-icons/react'
 
 import illustration from '../../assets/delivery-illustration.svg'
 import { DeliveryContainer, DeliveryInfo, DeliveryTopic } from './styles'
 
+interface FormProps {
+  address: string
+  city: string
+  state: string
+}
+
 export function Delivery() {
+  const location = useLocation()
+  const { address, city, state } = location.state as FormProps
+
   return (
     <DeliveryContainer>
       <h1>Woohoo! Order confirmed</h1>
@@ -14,9 +24,11 @@ export function Delivery() {
             <MapPin size={16} weight="fill" />
             <span>
               <p>
-                Delivery to <strong>Rua João Daniel Martinelli, 102</strong>
+                Delivery to <strong>{address}</strong>
               </p>
-              <p>Farrapos - Porto Alegre, RS</p>
+              <p>
+                {city}, {state}
+              </p>
             </span>
           </DeliveryTopic>
           <DeliveryTopic $iconBgColor="yellow-500">

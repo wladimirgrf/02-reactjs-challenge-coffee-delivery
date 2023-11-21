@@ -6,6 +6,7 @@ import {
   increaseTheAmountOfCoffeeAction,
   reduceTheAmountOfCoffeeAction,
   removeCoffeeAction,
+  resetTheCartAction,
 } from '../reducers/cart/actions'
 
 interface CartContextType {
@@ -14,6 +15,7 @@ interface CartContextType {
   increaseTheAmountOfCoffee: (coffeeId: number) => void
   reduceTheAmountOfCoffee: (coffeeId: number) => void
   removeCoffee: (coffeeId: number) => void
+  resetTheCart: () => void
 }
 
 interface CartContextProviderProps {
@@ -63,6 +65,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(removeCoffeeAction(coffeeId))
   }
 
+  function resetTheCart() {
+    dispatch(resetTheCartAction())
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -71,6 +77,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         increaseTheAmountOfCoffee,
         reduceTheAmountOfCoffee,
         removeCoffee,
+        resetTheCart,
       }}
     >
       {children}

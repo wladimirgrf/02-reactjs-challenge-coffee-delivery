@@ -16,6 +16,7 @@ interface OrderProps {
   name: string
   image: string
   amount: number
+  price: number
 }
 
 export function OrderItem(props: OrderProps) {
@@ -56,7 +57,7 @@ export function OrderItem(props: OrderProps) {
           </RemoveButton>
         </ItemOptions>
       </ItemMiddleSection>
-      <strong>$ 9,90</strong>
+      <strong>$ {props.price}</strong>
     </ItemContainer>
   )
 }
