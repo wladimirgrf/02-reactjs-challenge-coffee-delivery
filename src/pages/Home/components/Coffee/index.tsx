@@ -31,7 +31,7 @@ export function Coffee(props: CoffeeProps) {
   useEffect(() => {
     if (cartCoffees && cartCoffees.length > 0) {
       const coffeeFound = cartCoffees.find((coffee) => coffee.id === props.id)
-      const amount = coffeeFound?.amount || 0
+      const amount = coffeeFound?.amount || 1
 
       setCoffeeAmount(amount)
     }
@@ -44,7 +44,7 @@ export function Coffee(props: CoffeeProps) {
   }
 
   function handleReduceTheAmountOfCoffee() {
-    if (coffeeAmount > 0) {
+    if (coffeeAmount > 1) {
       setCoffeeAmount(coffeeAmount - 1)
     }
   }

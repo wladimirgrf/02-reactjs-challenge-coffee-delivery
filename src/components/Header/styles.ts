@@ -62,4 +62,19 @@ export const CartContainer = styled(BaseNavContainer)`
   &.active {
     box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-800']};
   }
+
+  span {
+    display: flex;
+    position: absolute;
+    margin-left: 2.188rem;
+    margin-bottom: 2.188rem;
+
+    padding: 0.125rem 0.375rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+    border-radius: 50%;
+
+    background: ${(props) => props.theme['yellow-800']};
+    color: ${(props) => props.theme.white};
+  }
 `
