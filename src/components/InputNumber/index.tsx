@@ -7,14 +7,24 @@ import {
   QuantityInput,
 } from './styles'
 
-export function InputNumber() {
+interface InputNumberProps {
+  amount: number
+  increaseTheAmount: () => void
+  reduceTheAmount: () => void
+}
+
+export function InputNumber({
+  amount,
+  increaseTheAmount,
+  reduceTheAmount,
+}: InputNumberProps) {
   return (
     <InputNumberContainer>
-      <DecrementButton>
+      <DecrementButton onClick={reduceTheAmount}>
         <Minus size={32} />
       </DecrementButton>
-      <QuantityInput value={0} disabled onChange={() => {}} />
-      <IncrementButton>
+      <QuantityInput value={amount} disabled onChange={() => {}} />
+      <IncrementButton onClick={increaseTheAmount}>
         <Plus size={32} />
       </IncrementButton>
     </InputNumberContainer>

@@ -9,7 +9,7 @@ import {
 } from '../reducers/cart/actions'
 
 interface CartContextType {
-  coffees: Coffee[]
+  cartCoffees: Coffee[]
   addCoffee: (data: Coffee) => void
   increaseTheAmountOfCoffee: (coffeeId: number) => void
   reduceTheAmountOfCoffee: (coffeeId: number) => void
@@ -25,7 +25,7 @@ export const CartContext = createContext({} as CartContextType)
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartState, dispatch] = useReducer(
     cartReducer,
-    { coffees: [] },
+    { cartCoffees: [] },
     (initialState) => {
       const storedStateAsJSON = localStorage.getItem(
         '@coffee-delivery:cart-state-1.0.0',
@@ -45,7 +45,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     localStorage.setItem('@coffee-delivery:cart-state-1.0.0', stateJSON)
   }, [cartState])
 
-  const { coffees } = cartState
+  const { cartCoffees } = cartState
 
   function addCoffee(data: Coffee) {
     dispatch(addCoffeeAction(data))
@@ -66,7 +66,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   return (
     <CartContext.Provider
       value={{
-        coffees,
+        cartCoffees,
         addCoffee,
         increaseTheAmountOfCoffee,
         reduceTheAmountOfCoffee,

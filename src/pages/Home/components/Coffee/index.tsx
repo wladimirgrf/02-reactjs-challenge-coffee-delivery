@@ -1,3 +1,4 @@
+import { useContext, useState, useEffect } from 'react'
 import { ShoppingCartSimple } from '@phosphor-icons/react'
 
 import {
@@ -10,6 +11,7 @@ import {
   AddToCartButton,
 } from './styles'
 
+import { CartContext } from '../../../../contexts/CartContext'
 import { InputNumber } from '../../../../components/InputNumber'
 
 interface CoffeeProps {
@@ -22,6 +24,41 @@ interface CoffeeProps {
 }
 
 export function Coffee(props: CoffeeProps) {
+  const [coffeeAmount, setCoffeeAmount] = useState(0)
+
+  const { cartCoffees, addCoffee } = useContext(CartContext)
+
+  useEffect(() => {
+    if (cartCoffees && cartCoffees.length > 0) {
+      const coffeeFound = cartCoffees.find((coffee) => coffee.id === props.id)
+      const amount = coffeeFound?.amount || 0
+
+      setCoffeeAmount(amount)
+    }
+  }, [cartCoffees, props.id])
+
+  function handleIncreaseTheAmountOfCoffee() {
+    if (coffeeAmount < 9) {
+      setCoffeeAmount(coffeeAmount + 1)
+    }
+  }
+
+  function handleReduceTheAmountOfCoffee() {
+    if (coffeeAmount > 0) {
+      setCoffeeAmount(coffeeAmount - 1)
+    }
+  }
+
+  function handleAddToCart() {
+    addCoffee({
+      id: props.id,
+      name: props.name,
+      price: props.price,
+      image: props.image,
+      amount: coffeeAmount,
+    })
+  }
+
   return (
     <CoffeeContainer>
       <CoffeeImage src={`src/assets/coffee/${props.image}`}></CoffeeImage>
@@ -39,8 +76,14 @@ export function Coffee(props: CoffeeProps) {
           <span>$</span>
           <strong>{props.price}</strong>
         </Price>
-        <InputNumber />
-        <AddToCartButton>
+
+        <InputNumber
+          amount={coffeeAmount}
+          increaseTheAmount={handleIncreaseTheAmountOfCoffee}
+          reduceTheAmount={handleReduceTheAmountOfCoffee}
+        />
+
+        <AddToCartButton onClick={handleAddToCart}>
           <ShoppingCartSimple size={20} weight="fill" />
         </AddToCartButton>
       </AddToCartContainer>
