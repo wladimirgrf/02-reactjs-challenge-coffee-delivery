@@ -2,7 +2,9 @@
 
 ### Challenge 02 - Coffee Delivery
 
-![](.github/assets/app.png)
+![](.github/assets/page1.png)
+![](.github/assets/page2.png)
+![](.github/assets/page3.png)
 
 #### 💻 Getting started
 
