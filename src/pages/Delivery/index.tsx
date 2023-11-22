@@ -8,11 +8,12 @@ interface FormProps {
   address: string
   city: string
   state: string
+  paymentMethod: string
 }
 
 export function Delivery() {
   const location = useLocation()
-  const { address, city, state } = location.state as FormProps
+  const { address, city, state, paymentMethod } = location.state as FormProps
 
   return (
     <DeliveryContainer>
@@ -45,7 +46,7 @@ export function Delivery() {
             <span>
               <p>Payment on delivery</p>
               <p>
-                <strong>Credit card</strong>
+                <strong>{paymentMethod}</strong>
               </p>
             </span>
           </DeliveryTopic>

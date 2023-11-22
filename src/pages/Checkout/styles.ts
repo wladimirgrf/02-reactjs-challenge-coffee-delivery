@@ -136,17 +136,21 @@ export const PaymentList = styled.div`
   justify-content: space-between;
 `
 
-export const PaymentItem = styled.button`
+interface PaymentItemProps {
+  $selectedOption?: boolean
+}
+
+export const PaymentItem = styled.button<PaymentItemProps>`
   width: 11.167rem;
-
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  gap: 0.75rem;
-
   display: flex;
   align-items: center;
 
+  cursor: pointer;
+
+  border: none;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  gap: 0.75rem;
   padding: 1rem;
   font-size: 0.75rem;
 
@@ -161,6 +165,13 @@ export const PaymentItem = styled.button`
     color: ${(props) => props.theme['gray-800']};
     background: ${(props) => props.theme['gray-500']};
   }
+
+  ${(props) =>
+    props.$selectedOption &&
+    css`
+      border-color: ${(props) => props.theme['purple-500']};
+      background-color: ${(props) => props.theme['purple-200']};
+    `}
 
   @media (max-width: 1020px) {
     & + & {
@@ -254,4 +265,21 @@ export const ConfirmOrderButton = styled.button`
   &:hover {
     background: ${(props) => props.theme['yellow-800']};
   }
+`
+
+interface FormErrorProps {
+  $isErrorOccurred: boolean
+}
+
+export const FormError = styled.p<FormErrorProps>`
+  font-size: 0.625rem;
+  color: red;
+  margin-bottom: 0.25rem;
+  display: none;
+
+  ${(props) =>
+    props.$isErrorOccurred &&
+    css`
+      display: block;
+    `}
 `

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import {
@@ -29,6 +29,7 @@ import {
   PriceLabel,
   PriceContainer,
   ConfirmOrderButton,
+  FormError,
 } from './styles'
 
 import { CartContext } from '../../contexts/CartContext'
@@ -42,11 +43,24 @@ const checkoutFormValidationSchema = z.object({
   state: z.string(),
 })
 
+enum PaymentMethod {
+  'CREDIT' = 'Credit Card',
+  'DEBIT' = 'Debit Card',
+  'CASH' = 'Cash',
+}
+
 type CheckoutFormData = z.infer<typeof checkoutFormValidationSchema>
 
 export function Checkout() {
-  const { cartCoffees, resetTheCart } = useContext(CartContext)
   const navigate = useNavigate()
+  const { cartCoffees, resetTheCart } = useContext(CartContext)
+
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | undefined>(
+    undefined,
+  )
+
+  const [paymentError, setPaymentError] = useState(false)
+  const [emptyListError, setEmptyListError] = useState(false)
 
   const checkoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormValidationSchema),
@@ -69,9 +83,28 @@ export function Checkout() {
 
   const total = totalInTheCart + deliveryCost
 
+  useEffect(() => {
+    setEmptyListError(false)
+  }, [cartCoffees])
+
   function handleCompleteCheckout(data: CheckoutFormData) {
+    if (!paymentMethod) {
+      setPaymentError(true)
+      return
+    }
+
+    if (cartCoffees.length === 0) {
+      setEmptyListError(true)
+      return
+    }
+
     resetTheCart()
-    navigate('/delivery', { state: data })
+    navigate('/delivery', { state: { ...data, paymentMethod } })
+  }
+
+  function handlePaymentMethod(method: PaymentMethod) {
+    setPaymentError(false)
+    setPaymentMethod(method)
   }
 
   return (
@@ -122,16 +155,33 @@ export function Checkout() {
                 </span>
               </p>
             </PaymentSection>
+
+            <FormError $isErrorOccurred={paymentError}>
+              PAYMENT METHOD IS MANDATORY!
+            </FormError>
+
             <PaymentList>
-              <PaymentItem type="button" onClick={() => {}}>
+              <PaymentItem
+                $selectedOption={paymentMethod === PaymentMethod.CREDIT}
+                type="button"
+                onClick={() => handlePaymentMethod(PaymentMethod.CREDIT)}
+              >
                 <CreditCard size={16} />
                 CREDIT CARD
               </PaymentItem>
-              <PaymentItem type="button" onClick={() => {}}>
+              <PaymentItem
+                $selectedOption={paymentMethod === PaymentMethod.DEBIT}
+                type="button"
+                onClick={() => handlePaymentMethod(PaymentMethod.DEBIT)}
+              >
                 <Bank size={16} />
                 DEBIT CARD
               </PaymentItem>
-              <PaymentItem type="button" onClick={() => {}}>
+              <PaymentItem
+                $selectedOption={paymentMethod === PaymentMethod.CASH}
+                type="button"
+                onClick={() => handlePaymentMethod(PaymentMethod.CASH)}
+              >
                 <Money size={16} />
                 CASH
               </PaymentItem>
@@ -141,6 +191,10 @@ export function Checkout() {
         <OrderContainer>
           <strong>Selected coffees</strong>
           <OrderInfo>
+            <FormError $isErrorOccurred={emptyListError}>
+              CHOOSE A CAFE FROM THE MENU TO SEND THE ORDER!
+            </FormError>
+
             {cartCoffees.length > 0 &&
               cartCoffees.map((coffee) => (
                 <OrderItem
